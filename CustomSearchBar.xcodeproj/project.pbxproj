@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8ACEF4E01D2700DF0075A81C /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACEF4DF1D2700DF0075A81C /* CustomSearchBar.swift */; };
+		8ACEF4E21D2702160075A81C /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACEF4E11D2702160075A81C /* CustomSearchController.swift */; };
 		C0622FC31B7737790027A684 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0622FC21B7737790027A684 /* AppDelegate.swift */; };
 		C0622FC51B7737790027A684 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0622FC41B7737790027A684 /* ViewController.swift */; };
 		C0622FC81B7737790027A684 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0622FC61B7737790027A684 /* Main.storyboard */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8ACEF4DF1D2700DF0075A81C /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = SOURCE_ROOT; };
+		8ACEF4E11D2702160075A81C /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		C0622FBD1B7737790027A684 /* CustomSearchBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomSearchBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0622FC11B7737790027A684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0622FC21B7737790027A684 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 		C0622FBF1B7737790027A684 /* CustomSearchBar */ = {
 			isa = PBXGroup;
 			children = (
+				8ACEF4DF1D2700DF0075A81C /* CustomSearchBar.swift */,
+				8ACEF4E11D2702160075A81C /* CustomSearchController.swift */,
 				C0622FC21B7737790027A684 /* AppDelegate.swift */,
 				C0622FC41B7737790027A684 /* ViewController.swift */,
 				C0622FC61B7737790027A684 /* Main.storyboard */,
@@ -218,8 +224,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ACEF4E21D2702160075A81C /* CustomSearchController.swift in Sources */,
 				C0622FC51B7737790027A684 /* ViewController.swift in Sources */,
 				C0622FC31B7737790027A684 /* AppDelegate.swift in Sources */,
+				8ACEF4E01D2700DF0075A81C /* CustomSearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

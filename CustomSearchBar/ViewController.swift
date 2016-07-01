@@ -12,7 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 	
 	@IBOutlet weak var tblSearchResults: UITableView!
 	
-	var searchController: UISearchController!
+	// var searchController: UISearchController!
+	var customSearchController: CustomSearchController!
 	var dataArray = [String]()
 	var filteredArray = [String]()
 	
@@ -22,7 +23,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		loadListOfCountries()
-		configureSearchController()
+		// configureSearchController()
+		configureCustomSearchController()
 		tblSearchResults.delegate = self
 		tblSearchResults.dataSource = self
 	}
@@ -52,14 +54,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 		}
 	}
 	
-	func configureSearchController() {
-		searchController = UISearchController(searchResultsController: nil)
-		searchController.searchResultsUpdater = self
-		searchController.dimsBackgroundDuringPresentation = true
-		searchController.searchBar.placeholder = "Search here..."
-		searchController.searchBar.delegate = self
-		searchController.searchBar.sizeToFit()
-		tblSearchResults.tableHeaderView = searchController.searchBar
+	// func configureSearchController() {
+	// searchController = UISearchController(searchResultsController: nil)
+	// searchController.searchResultsUpdater = self
+	// searchController.dimsBackgroundDuringPresentation = true
+	// searchController.searchBar.placeholder = "Search here..."
+	// searchController.searchBar.delegate = self
+	// searchController.searchBar.sizeToFit()
+	// tblSearchResults.tableHeaderView = searchController.searchBar
+	// }
+	
+	func configureCustomSearchController() {
+		customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tblSearchResults.frame.size.width, 50.0), searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.orangeColor(), searchBarTintColor: UIColor.blackColor())
+		
+		customSearchController.customSearchBar.placeholder = "Search in this awesome bar..."
+		tblSearchResults.tableHeaderView = customSearchController.customSearchBar
+		customSearchController.customDelegate = self
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -68,7 +78,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 			tblSearchResults.reloadData()
 		}
 		
-		searchController.searchBar.resignFirstResponder()
+		// searchController.searchBar.resignFirstResponder()
+		customSearchController.searchBar.resignFirstResponder()
 	}
 	
 	// MARK: UITableView Delegate and Datasource functions
@@ -128,6 +139,34 @@ extension ViewController: UISearchBarDelegate {
 	
 	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
 		shouldShowSearchResults = false
+		tblSearchResults.reloadData()
+	}
+}
+
+extension ViewController: CustomSearchControllerDelegate {
+	func didStartSearching() {
+		shouldShowSearchResults = true
+		tblSearchResults.reloadData()
+	}
+	func didTapOnSearchButton() {
+		if !shouldShowSearchResults {
+			shouldShowSearchResults = true
+			tblSearchResults.reloadData()
+		}
+	}
+	func didTapOnCancelButton() {
+		shouldShowSearchResults = false
+		tblSearchResults.reloadData()
+	}
+	func didChangeSearchText(searchText: String) {
+		// Filter the data array and get only those countries that match the search text.
+		filteredArray = dataArray.filter({ (country) -> Bool in
+			let countryText: NSString = country
+			
+			return (countryText.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+		})
+		
+		// Reload the tableview.
 		tblSearchResults.reloadData()
 	}
 }
